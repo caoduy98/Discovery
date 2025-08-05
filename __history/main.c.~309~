@@ -1,0 +1,232 @@
+#include <System.c>
+int1 check_bit = 1;
+void main()
+{
+   Main_init();
+   while(TRUE)
+   {  
+      data_singled = (input_D() >> 2)&0x00FF;
+      data_seg7_led1 = input(Seg7_A1) + input(Seg7_A2)*2 + input(Seg7_A3)*4 + input(Seg7_A4)*8;
+      data_seg7_led2 = input(Seg7_B1) + input(Seg7_B2)*2 + input(Seg7_B3)*4 + input(Seg7_B4)*8;
+      check_bit = Check_connect_computer();
+      if(check_bit == 1)
+      {
+         Switch_control(1);     
+         Single_Seg7_led_read();
+         Pulse_switch(1);
+         Control_supply(1);
+         lcd_gotoxy(0,0);
+         printf(lcd_putchar,"CONNECT COMPUTER"); 
+         lcd_gotoxy(0,1);
+         printf(lcd_putchar,"................");
+      }
+      if(check_bit ==0)
+      {
+         Switch_control(0);     
+         Pulse_switch(0);
+         Control_supply(0);
+         control_button();
+         Read_current();
+         if(setup_mode == 0)
+         {
+            lcd_gotoxy(0,0);
+            printf(lcd_putchar,"-LOCAL CONTROL -"); 
+            lcd_gotoxy(0,1);
+            printf(lcd_putchar,"I1:%d.%d%dAI2:%d.%d%dA  ",curren_displayA/100,(curren_displayA%100)/10,(curren_displayA%100)%10,
+            curren_displayB/100,(curren_displayB%100)/10,(curren_displayB%100)%10);
+         }
+      }
+   }
+}
+void Switch_control (unsigned char flag)
+{
+   if(flag == 1)
+   {
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 0))
+      data_switch = data_switch&0xFE;
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 1))
+      data_switch = data_switch|0x01;
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 0))
+      data_switch = data_switch&0xFD;
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 1))
+      data_switch = data_switch|0x02;
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 0))
+      data_switch = data_switch&0xFB;
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 1))
+      data_switch = data_switch|0x04;  
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 0))
+      data_switch = data_switch&0xF7;
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 1))
+      data_switch = data_switch|0x08;  
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 0))
+      data_switch = data_switch&0xEF;
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 1))
+      data_switch = data_switch|0x10;  
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 0))
+      data_switch = data_switch&0xDF;
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 1))
+      data_switch = data_switch|0x20; 
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 0))
+      data_switch = data_switch&0xBF;
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 1))
+      data_switch = data_switch|0x40;
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 0))
+      data_switch = data_switch&0x7F;
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 0)&&(input(Dat_SW) == 1))
+      data_switch = data_switch|0x80;
+      output_F(0x0100|data_switch);
+   }
+   if(flag == 0)output_F(0x00FF);
+}
+void Single_Seg7_led_read (void)
+{
+      if((input(Add_Led1) == 0)&&(input(Add_Led2) == 0)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 0))
+      {output_bit(Dat_Led,input(LED1));delay_ms(2);}
+      if((input(Add_Led1) == 1)&&(input(Add_Led2) == 0)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 0))
+      {output_bit(Dat_Led,input(LED2));delay_ms(2);}
+      if((input(Add_Led1) == 0)&&(input(Add_Led2) == 1)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 0))
+      {output_bit(Dat_Led,input(LED3));delay_ms(2);}
+      if((input(Add_Led1) == 1)&&(input(Add_Led2) == 1)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 0))
+      {output_bit(Dat_Led,input(LED4));delay_ms(2);}
+      if((input(Add_Led1) == 0)&&(input(Add_Led2) == 0)&&(input(Add_Led3) == 1)&&(input(Add_Led4) == 0))
+      {output_bit(Dat_Led,input(LED5));delay_ms(2);}
+      if((input(Add_Led1) == 1)&&(input(Add_Led2) == 0)&&(input(Add_Led3) == 1)&&(input(Add_Led4) == 0))
+      {output_bit(Dat_Led,input(LED6));delay_ms(2);}
+      if((input(Add_Led1) == 0)&&(input(Add_Led2) == 1)&&(input(Add_Led3) == 1)&&(input(Add_Led4) == 0))
+      {output_bit(Dat_Led,input(LED7));delay_ms(2);}
+      if((input(Add_Led1) == 1)&&(input(Add_Led2) == 1)&&(input(Add_Led3) == 1)&&(input(Add_Led4) == 0))
+      {output_bit(Dat_Led,input(LED8));delay_ms(2);}
+      if((input(Add_Led1) == 0)&&(input(Add_Led2) == 0)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 1))
+      {output_bit(Dat_Led,data_seg7_led1&0x0001);delay_ms(2);}
+      if((input(Add_Led1) == 1)&&(input(Add_Led2) == 0)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 1))
+      {output_bit(Dat_Led,(data_seg7_led1 >> 1)&0x0001);delay_ms(2);}
+      if((input(Add_Led1) == 0)&&(input(Add_Led2) == 1)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 1))
+      {output_bit(Dat_Led,(data_seg7_led1 >> 2)&0x0001);delay_ms(2);}
+      if((input(Add_Led1) == 1)&&(input(Add_Led2) == 1)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 1))
+      {output_bit(Dat_Led,(data_seg7_led1 >> 3)&0x0001);delay_ms(2);}
+      if((input(Add_Led1) == 0)&&(input(Add_Led2) == 0)&&(input(Add_Led3) == 1)&&(input(Add_Led4) == 1))
+      {output_bit(Dat_Led,data_seg7_led2&0x0001);delay_ms(2);}
+      if((input(Add_Led1) == 1)&&(input(Add_Led2) == 0)&&(input(Add_Led3) == 1)&&(input(Add_Led4) == 1))
+      {output_bit(Dat_Led,(data_seg7_led2 >> 1)&0x0001);delay_ms(2);}
+      if((input(Add_Led1) == 0)&&(input(Add_Led2) == 1)&&(input(Add_Led3) == 1)&&(input(Add_Led4) == 1))
+      {output_bit(Dat_Led,(data_seg7_led2 >> 2)&0x0001);delay_ms(2);}
+      if((input(Add_Led1) == 1)&&(input(Add_Led2) == 1)&&(input(Add_Led3) == 1)&&(input(Add_Led4) == 1))
+      {output_bit(Dat_Led,(data_seg7_led2 >> 3)&0x0001);delay_ms(2);}  
+}
+void Pulse_switch (unsigned char flag)
+{
+   if(flag == 0)
+   {
+      output_bit(PULSEA,~input(PX));
+      output_bit(PULSEA_,input(PX));
+      output_bit(PULSEB,~input(PY));
+      output_bit(PULSEB_,input(PY));
+   }
+   if(flag == 1)
+   {
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 1))
+      {output_high(PULSEA);output_low(PULSEA_);}
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 0))
+      {output_low(PULSEA);output_high(PULSEA_);}
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 1))
+      {output_high(PULSEB);output_low(PULSEB_);}
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 0))
+      {output_low(PULSEB);output_high(PULSEB_);}
+   }
+}
+
+void Control_supply (unsigned char flag)
+{
+   if(flag == 0)
+   {
+      re_local = 0;
+      if(power_on_5V == 1)output_high(ON_5V);
+      else output_low(ON_5V);
+      if(power_on_12V == 1)output_high(ON_12V);
+      else output_low(ON_12V);
+      if(power_on_5V_ == 1)output_high(ON_5V_);
+      else output_low(ON_5V_);
+      if(power_on_12V_ == 1)output_high(ON_12V_);
+      else output_low(ON_12V_);
+   }
+   if(flag == 1)
+   {
+      if(re_local == 0)
+      {
+         output_low(ON_5V);
+         output_low(ON_12V);
+         output_low(ON_5V_);
+         output_low(ON_12V_);
+         re_local = 1;
+      }
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 1))
+      output_high(ON_5V);
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 0))
+      output_low(ON_5V);
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 1))
+      output_high(ON_12V);
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 1)&&(input(Add_SW3) == 0)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 0))
+      output_low(ON_12V);
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 1))
+      output_high(ON_5V_);
+      if((input(Add_SW1) == 0)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 0))
+      output_low(ON_5V_);
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 1))
+      output_high(ON_12V_);
+      if((input(Add_SW1) == 1)&&(input(Add_SW2) == 0)&&(input(Add_SW3) == 1)&&(input(Add_SW4) == 1)&&(input(Dat_SW) == 0))
+      output_low(ON_12V_);
+   }
+}
+unsigned char Check_connect_computer (void)
+{   
+   if((input(Add_Led1) == 0)&&(input(Add_Led2) == 0)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 0)){dat1 = 200;}
+   if((input(Add_Led1) == 1)&&(input(Add_Led2) == 0)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 0)){dat2 = 200;}
+   if((input(Add_Led1) == 0)&&(input(Add_Led2) == 1)&&(input(Add_Led3) == 0)&&(input(Add_Led4) == 0)){dat3 = 200;}
+   if((dat1 >= 10)&&(dat2 >= 10)&&(dat3 >= 10))data = 1;
+   if(dat1 > 0)dat1 --;
+   if(dat2 > 0)dat2 --;
+   if(dat3 > 0)dat3 --;
+   if((dat1 == 0)||(dat2 == 0)||(dat3 == 0))data = 0;
+   return(data);
+}
+void control_button (void)
+{
+   if(input(MD) == 0){setup_mode ++;delay_ms(200);if(setup_mode > 5)setup_mode = 5;}
+   if(setup_mode != 0)
+   {
+      if(setup_mode == 1)
+      { 
+         lcd_gotoxy(0,0);
+         printf(lcd_putchar,"SETUP PS ON/OFF:"); 
+         lcd_gotoxy(0,1);
+         printf(lcd_putchar,"");
+      }
+   }
+   if(input(EX) == 0)setup_mode = 0;
+}
+Void Read_current (void)
+{
+   val_adc1 = multi_read_adc(18,1000);
+   val_adc2 = multi_read_adc(19,1000);
+   if(val_adc1 >= 1897){curren_displayA = (val_adc1 - 1897)/0.694;flag_currA = 0;}
+   if(val_adc1 < 1897){curren_displayA = (1897 - val_adc1)/0.852;flag_currA = 1;}
+   if(val_adc2 >= 1890){curren_displayB = (val_adc2 - 1890)/0.694;flag_currB = 0;}
+   if(val_adc2 < 1890){curren_displayB = (1890 - val_adc2)/0.852;flag_currB = 1;}
+}
+unsigned int16 multi_read_adc (unsigned int8 channel,unsigned int16 samling)
+{
+   unsigned int16 val_adc,val_return;
+   unsigned int32 val_convert;
+   unsigned int16 i;
+   for(i = 0;i < samling;i ++)
+   {
+      set_adc_channel (channel);
+      delay_us(10);
+      val_adc = read_adc();
+      M[channel] += val_adc;
+   }
+   val_convert = M[channel]/samling;
+   M[channel] = 0;
+   val_return = val_convert;
+   return (val_return);
+}

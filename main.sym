@@ -1,0 +1,139 @@
+W0      @SCRATCH
+W0L     _RETURN_
+W0 -W1  @DIV3232A.P1
+W0 -W1  @READ_ROM_MEMORY.P2
+W0 -W3  @F64TOI64.P3
+W0 -W3  @DIVFF64.P4
+W0 -W3  @I64TOF64.P5
+W0 -W1  @DIV3232B.P6
+W0      @PRINTFD16_848.P7
+W0      @delay_ms1.P8
+W0      @delay_us1.P9
+W1      @SCRATCH
+W1      @WRITE_PACKED_MEMORY.P1
+W1      @READ_PACKED_MEMORY.P2
+W2      @WRITE_PACKED_MEMORY.P1
+W2 -W3  @DIV3232A.P2
+W2      @READ_PACKED_MEMORY.P3
+W2 -W3  @DIV3232B.P4
+W2      @READ_ROM_MEMORY.P5
+W3      @READ_ROM_MEMORY.P1
+W3      @READ_PACKED_MEMORY.P2
+W3      @WRITE_PACKED_MEMORY.P3
+W4      @PRINTFD16_848.P1
+W4 -W7  @DIVFF64.P2
+800     data_switch
+801     data_singled
+802     data_seg7_led1
+803     data_seg7_led2
+804     dat1
+805     dat2
+806     dat3
+807     data
+808     power_on_5V
+809     power_on_12V
+80A     power_on_5V_
+80B     power_on_12V_
+80C     power_on
+80D     re_local
+80E     setup_mode
+80F     flag_currA
+810-811 val_adc1
+812-813 val_adc2
+814-815 curren_displayA
+816-817 curren_displayB
+818     flag_currB
+819.0   check_bit
+81A-87D M
+87E     Pulse_switch.flag
+87E     lcd_gotoxy.x
+87E     Control_supply.flag
+87E     Switch_control.flag
+87E     multi_read_adc.channel
+87F     lcd_gotoxy.y
+880     lcd_gotoxy.address
+880-881 multi_read_adc.samling
+882-883 multi_read_adc.val_adc
+884-885 multi_read_adc.val_return
+886-889 multi_read_adc.val_convert
+886-887 lcd_putchar.cX
+88A     lcd_send_command.cX
+88A-88B multi_read_adc.i
+88E     lcd_send_4bit_data.cX
+4780-47FF Stack
+
+ROM Allocation:
+000200  @const898.call
+00021E  @const899.call
+00023C  @const900.call
+00025A  @const902.call
+000278  @const903.call
+000298  @const904.call
+0002B8  @const912.call
+0002D8  @const916.call
+0002F8  @const917.call
+000318  @const918.call
+000338  @delay_ms1
+000348  lcd_send_4bit_data
+0003A2  lcd_enable
+0003B4  lcd_send_command
+0003DC  lcd_init
+000432  Main_init
+000470  Check_connect_computer
+000510  Switch_control
+00073A  Single_Seg7_led_read
+000A64  Pulse_switch
+000B50  Control_supply
+000CE2  lcd_gotoxy
+000D2C  lcd_putchar
+000D3E  @DIV3232A
+000D92  multi_read_adc
+000E18  @I64TOF64
+000E82  @DIVFF64
+000F8A  @F64TOI64
+000FE8  @PRINTFD16_848
+00110C  Read_current
+001414  control_button
+0014F0  MAIN
+0014F0  @cinit1
+001538  @cinit2
+
+Project Directory:
+    D:\Thiet ke dien tu\Mach thiet ke\Lap trinh\Du an nam 2018\Discovery\
+
+Project Files:
+    main.c                                                  [07-Thg12-18 18:41  CRC=093D0652]
+    System.c                                                [07-Thg12-18 11:24  CRC=91CDD82E]
+    main.h                                                  [07-Thg12-18 10:29  CRC=095C20CE]
+    C:\Program Files (x86)\PICC\Devices\33FJ128MC710.h      [22-Thg10-15 10:32  CRC=DBF7D451]
+    Lcd4bit.c                                               [08-Thg11-18 11:20  CRC=9326AF64]
+    Lcd4bit.h                                               [08-Thg11-18 11:20  CRC=421FDC4E]
+
+Source signature=97C53B9F
+Program memory checksum=0000
+Program memory CRC=0000
+Hex file CRC=053F
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      DSPIC33FJ128MC710
+    Pointer Size:   16
+    ADC Range:      0-4095
+    Opt Level:      9
+    Short,Int,Long: SIGNED: 8,16,32
+    Float,Double:   32,64
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

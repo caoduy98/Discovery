@@ -1,0 +1,19 @@
+#define LCD_RS   PIN_C14
+#define LCD_RW   PIN_C13 
+#define LCD_E    PIN_D0 
+
+#define LCD_D4   PIN_D1 
+#define LCD_D5   PIN_D2   
+#define LCD_D6   PIN_D3
+#define LCD_D7   PIN_D8  
+
+void lcd_enable(void);
+void lcd_send_4bit_data ( unsigned char cX );
+void lcd_send_command (unsigned char cX );
+void lcd_init (void );
+void lcd_gotoxy(unsigned char x, unsigned char y);
+void lcd_clear(void);
+void lcd_putchar ( unsigned int16 cX );
+void lcd_puts (char *s);
+void lcd_putcharInt(unsigned int16 val);
+

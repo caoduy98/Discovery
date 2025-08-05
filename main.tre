@@ -1,0 +1,161 @@
+ÀÄmain
+   ÀÄMAIN  0/426  Ram=4
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄMain_init  0/62  Ram=0
+      ³  ÃÄ@delay_ms1  0/16  Ram=2
+      ³  ÃÄlcd_init  0/86  Ram=0
+      ³  ³  ÃÄlcd_send_4bit_data  0/90  Ram=4
+      ³  ³  ÃÄlcd_enable  0/18  Ram=0
+      ³  ³  ÃÄlcd_enable  0/18  Ram=0
+      ³  ³  ÃÄlcd_enable  0/18  Ram=0
+      ³  ³  ÃÄlcd_send_4bit_data  0/90  Ram=4
+      ³  ³  ÃÄlcd_enable  0/18  Ram=0
+      ³  ³  ÃÄlcd_send_command  0/40  Ram=4
+      ³  ³  ³  ÃÄlcd_send_4bit_data  0/90  Ram=4
+      ³  ³  ³  ÃÄlcd_enable  0/18  Ram=0
+      ³  ³  ³  ÃÄlcd_send_4bit_data  0/90  Ram=4
+      ³  ³  ³  ÀÄlcd_enable  0/18  Ram=0
+      ³  ³  ÃÄlcd_send_command  0/40  Ram=4
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÃÄlcd_send_command  0/40  Ram=4
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÃÄlcd_send_command  0/40  Ram=4
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÀÄlcd_send_command  0/40  Ram=4
+      ³  ³     ÀÄ*
+      ³  ÀÄ@delay_ms1  0/16  Ram=2
+      ÃÄCheck_connect_computer  0/160  Ram=8
+      ÃÄSwitch_control  0/554  Ram=11
+      ÃÄSingle_Seg7_led_read  0/810  Ram=8
+      ÃÄPulse_switch  0/236  Ram=11
+      ÃÄControl_supply  0/402  Ram=11
+      ÃÄlcd_gotoxy  0/74  Ram=3
+      ³  ÀÄlcd_send_command  0/40  Ram=4
+      ³     ÀÄ*
+      ÃÄ@const898  0/30  Ram=0
+      ÃÄlcd_putchar  0/18  Ram=2
+      ³  ÀÄlcd_send_command  0/40  Ram=4
+      ³     ÀÄ*
+      ÃÄlcd_gotoxy  0/74  Ram=3
+      ³  ÀÄ*
+      ÃÄ@const899  0/30  Ram=0
+      ÃÄlcd_putchar  0/18  Ram=2
+      ³  ÀÄ*
+      ÃÄSwitch_control  0/554  Ram=11
+      ÃÄPulse_switch  0/236  Ram=11
+      ÃÄControl_supply  0/402  Ram=11
+      ÃÄcontrol_button  0/220  Ram=2
+      ³  ÃÄ@delay_ms1  0/16  Ram=2
+      ³  ÃÄlcd_gotoxy  0/74  Ram=3
+      ³  ³  ÀÄ*
+      ³  ÃÄ@const902  0/30  Ram=0
+      ³  ÃÄlcd_putchar  0/18  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/74  Ram=3
+      ³  ³  ÀÄ*
+      ³  ÃÄ@const903  0/32  Ram=0
+      ³  ÃÄlcd_putchar  0/18  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/74  Ram=3
+      ³  ³  ÀÄ*
+      ³  ÃÄ@const904  0/32  Ram=0
+      ³  ÃÄlcd_putchar  0/18  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÀÄRead_current  0/776  Ram=7
+      ³     ÃÄmulti_read_adc  0/134  Ram=18
+      ³     ³  ÀÄ@DIV3232A  0/84  Ram=8
+      ³     ÃÄmulti_read_adc  0/134  Ram=18
+      ³     ³  ÀÄ*
+      ³     ÃÄ@I64TOF64  0/106  Ram=0
+      ³     ÃÄ@DIVFF64  0/264  Ram=8
+      ³     ÃÄ@F64TOI64  0/94  Ram=0
+      ³     ÃÄ@I64TOF64  0/106  Ram=0
+      ³     ÃÄ@DIVFF64  0/264  Ram=8
+      ³     ÃÄ@F64TOI64  0/94  Ram=0
+      ³     ÃÄ@I64TOF64  0/106  Ram=0
+      ³     ÃÄ@DIVFF64  0/264  Ram=8
+      ³     ÃÄ@F64TOI64  0/94  Ram=0
+      ³     ÃÄ@I64TOF64  0/106  Ram=0
+      ³     ÃÄ@DIVFF64  0/264  Ram=8
+      ³     ÃÄ@F64TOI64  0/94  Ram=0
+      ³     ÃÄlcd_gotoxy  0/74  Ram=3
+      ³     ³  ÀÄ*
+      ³     ÃÄ@const912  0/32  Ram=0
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ³  ÀÄ*
+      ³     ³  ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ³  ÀÄ*
+      ³     ³  ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ³  ÀÄ*
+      ³     ³  ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ³  ÀÄ*
+      ³     ³  ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ³  ÀÄ*
+      ³     ³  ÀÄlcd_putchar  0/18  Ram=2
+      ³     ³     ÀÄ*
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄlcd_gotoxy  0/74  Ram=3
+      ³     ³  ÀÄ*
+      ³     ÃÄ@const916  0/32  Ram=0
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄlcd_gotoxy  0/74  Ram=3
+      ³     ³  ÀÄ*
+      ³     ÃÄ@const917  0/32  Ram=0
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄlcd_gotoxy  0/74  Ram=3
+      ³     ³  ÀÄ*
+      ³     ÃÄ@const918  0/32  Ram=0
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÃÄlcd_putchar  0/18  Ram=2
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÃÄ@PRINTFD16_848  0/292  Ram=0
+      ³     ³  ÀÄ*
+      ³     ÀÄlcd_putchar  0/18  Ram=2
+      ³        ÀÄ*
+      ÃÄlcd_gotoxy  0/74  Ram=3
+      ³  ÀÄ*
+      ÃÄ@const900  0/30  Ram=0
+      ÃÄlcd_putchar  0/18  Ram=2
+      ³  ÀÄ*
+      ÃÄlcd_gotoxy  0/74  Ram=3
+      ³  ÀÄ*
+      ÃÄ@const899  0/30  Ram=0
+      ÀÄlcd_putchar  0/18  Ram=2
+         ÀÄ*
