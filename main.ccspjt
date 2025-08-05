@@ -3,11 +3,11 @@ Target=main.hex
 Processor_Text=DSPIC33FJ128MC710
 CCSVerions=5.051
 Compiler=PCD
-CCSVersion=5.051
+CCSVersion=5.015
 [Target Data]
 FileList=main.c
 [Directories]
-Include=
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
 [D:\Thiet ke dien tu\Mach thiet ke\Lap trinh\Du an nam 2018\Discovery\main]
 Type=4
 [mru-list]
@@ -288,7 +288,7 @@ t4=1
 t5=1
 6=System.c
 t6=52
-7=..\Bo kich tu V-DHSPND\Mach kich tu B4936\ADE7753.c
+7=
 t7=1
 8=..\Bo kich tu V-DHSPND\Mach kich tu B4936\main.c
 t8=1

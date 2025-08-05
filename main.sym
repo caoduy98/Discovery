@@ -1,26 +1,26 @@
 W0      @SCRATCH
 W0L     _RETURN_
-W0 -W1  @DIV3232A.P1
+W0      @delay_us1.P1
 W0 -W1  @READ_ROM_MEMORY.P2
-W0 -W3  @F64TOI64.P3
+W0      @PRINTFD16_851.P3
 W0 -W3  @DIVFF64.P4
-W0 -W3  @I64TOF64.P5
+W0      @delay_ms1.P5
 W0 -W1  @DIV3232B.P6
-W0      @PRINTFD16_848.P7
-W0      @delay_ms1.P8
-W0      @delay_us1.P9
+W0 -W3  @F64TOI64.P7
+W0 -W3  @I64TOF64.P8
+W0 -W1  @DIV3232A.P9
 W1      @SCRATCH
 W1      @WRITE_PACKED_MEMORY.P1
 W1      @READ_PACKED_MEMORY.P2
-W2      @WRITE_PACKED_MEMORY.P1
-W2 -W3  @DIV3232A.P2
-W2      @READ_PACKED_MEMORY.P3
-W2 -W3  @DIV3232B.P4
+W2      @READ_PACKED_MEMORY.P1
+W2      @WRITE_PACKED_MEMORY.P2
+W2 -W3  @DIV3232B.P3
+W2 -W3  @DIV3232A.P4
 W2      @READ_ROM_MEMORY.P5
-W3      @READ_ROM_MEMORY.P1
-W3      @READ_PACKED_MEMORY.P2
-W3      @WRITE_PACKED_MEMORY.P3
-W4      @PRINTFD16_848.P1
+W3      @READ_PACKED_MEMORY.P1
+W3      @WRITE_PACKED_MEMORY.P2
+W3      @READ_ROM_MEMORY.P3
+W4      @PRINTFD16_851.P1
 W4 -W7  @DIVFF64.P2
 800     data_switch
 801     data_singled
@@ -46,9 +46,9 @@ W4 -W7  @DIVFF64.P2
 819.0   check_bit
 81A-87D M
 87E     Pulse_switch.flag
-87E     lcd_gotoxy.x
-87E     Control_supply.flag
 87E     Switch_control.flag
+87E     Control_supply.flag
+87E     lcd_gotoxy.x
 87E     multi_read_adc.channel
 87F     lcd_gotoxy.y
 880     lcd_gotoxy.address
@@ -60,19 +60,19 @@ W4 -W7  @DIVFF64.P2
 88A     lcd_send_command.cX
 88A-88B multi_read_adc.i
 88E     lcd_send_4bit_data.cX
-4780-47FF Stack
+3F80-3FFF Stack
 
 ROM Allocation:
-000200  @const898.call
-00021E  @const899.call
-00023C  @const900.call
-00025A  @const902.call
-000278  @const903.call
-000298  @const904.call
-0002B8  @const912.call
-0002D8  @const916.call
-0002F8  @const917.call
-000318  @const918.call
+000200  @const903.call
+00021E  @const904.call
+00023C  @const905.call
+00025A  @const907.call
+000278  @const908.call
+000298  @const909.call
+0002B8  @const917.call
+0002D8  @const921.call
+0002F8  @const922.call
+000318  @const923.call
 000338  @delay_ms1
 000348  lcd_send_4bit_data
 0003A2  lcd_enable
@@ -88,31 +88,28 @@ ROM Allocation:
 000D2C  lcd_putchar
 000D3E  @DIV3232A
 000D92  multi_read_adc
-000E18  @I64TOF64
-000E82  @DIVFF64
-000F8A  @F64TOI64
-000FE8  @PRINTFD16_848
-00110C  Read_current
-001414  control_button
-0014F0  MAIN
-0014F0  @cinit1
-001538  @cinit2
+000E1A  @I64TOF64
+000E7E  @DIVFF64
+000F86  @F64TOI64
+000FDC  @PRINTFD16_851
+0010D6  Read_current
+0013DE  control_button
+0014BA  MAIN
+0014BA  @cinit1
+001502  @cinit2
 
 Project Directory:
-    D:\Thiet ke dien tu\Mach thiet ke\Lap trinh\Du an nam 2018\Discovery\
+    D:\Code\Discovery\Discovery\
 
 Project Files:
-    main.c                                                  [07-Thg12-18 18:41  CRC=093D0652]
-    System.c                                                [07-Thg12-18 11:24  CRC=91CDD82E]
-    main.h                                                  [07-Thg12-18 10:29  CRC=095C20CE]
-    C:\Program Files (x86)\PICC\Devices\33FJ128MC710.h      [22-Thg10-15 10:32  CRC=DBF7D451]
-    Lcd4bit.c                                               [08-Thg11-18 11:20  CRC=9326AF64]
-    Lcd4bit.h                                               [08-Thg11-18 11:20  CRC=421FDC4E]
+    main.c                                                  [07-Dec-18 18:41  CRC=093D0652]
+    System.c                                                [07-Dec-18 11:24  CRC=91CDD82E]
+    main.h                                                  [07-Dec-18 10:29  CRC=095C20CE]
+    C:\Program Files (x86)\PICC\Devices\33FJ128MC710.h      [12-Nov-13 14:36  CRC=D4E0A6AD]
+    Lcd4bit.c                                               [08-Nov-18 11:20  CRC=9326AF64]
+    Lcd4bit.h                                               [05-Aug-25 23:56  CRC=421FDC4E]
 
-Source signature=97C53B9F
-Program memory checksum=0000
-Program memory CRC=0000
-Hex file CRC=053F
+Source signature=90AE0DFB
 
 Units:
     main (main)
@@ -124,7 +121,6 @@ Compiler Settings:
     Opt Level:      9
     Short,Int,Long: SIGNED: 8,16,32
     Float,Double:   32,64
-    Compile Mode:       CCS5
 
 Output Files:
     XREF file:   main.xsym

@@ -16,6 +16,4 @@ void lcd_clear(void);
 void lcd_putchar ( unsigned int16 cX );
 void lcd_puts (char *s);
 void lcd_putcharInt(unsigned int16 val);
-/////////////////
-void test(int16 test);
 
